@@ -22,6 +22,7 @@ Supported browsers
 | Chrome         | Blob          | Yes          | [500 MiB][3]  | None         |
 | Chrome for Android | Blob      | Yes          | [500 MiB][3]  | None         |
 | IE 10+         | Blob          | Yes          | 600 MiB       | None         |
+| IE < 10        | text/html     | Yes          | n/a           | None         |
 | Opera 15+      | Blob          | Yes          | 500 MiB       | None         |
 | Opera < 15     | data: URI     | No           | n/a           | [Blob.js](https://github.com/eligrey/Blob.js) |
 | Safari 6.1+*   | Blob          | No           | ?             | None         |
@@ -38,7 +39,6 @@ try {
 ### IE < 10
 
 It is possible to save text files in IE < 10 without Flash-based polyfills.
-See [ChenWenBrian and koffsyrup's `saveTextAs()`](https://github.com/koffsyrup/FileSaver.js#examples) for more details.
 
 ### Safari 6.1+
 
@@ -53,7 +53,7 @@ Syntax
 ------
 
 ```js
-FileSaver saveAs(Blob data, DOMString filename, optional Boolean disableAutoBOM)
+FileSaver saveTextOrBlob(Blob data, DOMString filename, optional Boolean disableAutoBOM)
 ```
 
 Pass `true` for `disableAutoBOM` if you don't want FileSaver.js to automatically provide Unicode text encoding hints (see: [byte order mark](https://en.wikipedia.org/wiki/Byte_order_mark)).
@@ -65,8 +65,14 @@ Examples
 
 ```js
 var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-saveAs(blob, "hello world.txt");
+saveTextOrBlob(blob, "hello world.txt");
 ```
+or
+
+```js
+saveTextOrBlob("saving this text", "hello world.txt", "UTF-8");
+```
+
 
 The standard W3C File API [`Blob`][4] interface is not available in all browsers.
 [Blob.js][5] is a cross-browser `Blob` implementation that solves this.
@@ -77,7 +83,7 @@ The standard W3C File API [`Blob`][4] interface is not available in all browsers
 var canvas = document.getElementById("my-canvas"), ctx = canvas.getContext("2d");
 // draw to canvas...
 canvas.toBlob(function(blob) {
-    saveAs(blob, "pretty image.png");
+    saveTextOrBlob(blob, "pretty image.png");
 });
 ```
 
@@ -108,4 +114,7 @@ Please make sure you build a production version before submitting a pull request
 Bower Installation
 ------------------
 
-Please see the [this repo](http://github.com/Teleborder/FileSaver.js) for a bower-compatible fork of FileSaver.js, available under the package name `file-saver.js`.
+Just Run:
+```
+bower install customapps-medallia-library-FileSaver.js
+```
