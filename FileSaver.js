@@ -262,6 +262,15 @@ var saveAs = saveAs || (function(view) {
 // with an attribute `content` that corresponds to the window
 
 
+String.prototype.endsWithAny = function () {
+	var strArray = Array.prototype.slice.call(arguments),
+		$this = this.toLowerCase().toString();
+	for (var i = 0; i < strArray.length; i++) {
+		if ($this.indexOf(strArray[i], $this.length - strArray[i].length) !== -1) return true;
+	}
+	return false;
+};
+
 /**
  * This function is extracted from https://github.com/ChenWenBrian/FileSaver.js/blob/master/FileSaver.js for IE < 10 support
  * @type {*|Function}
