@@ -1,6 +1,8 @@
 FileSaver.js
 ============
 
+FileSaver.js is a forked project from: [eligrey/FileSaver.js](https://github.com/eligrey/FileSaver.js).
+FileSaver.js has the same capabilities than the upstream repository plus the addition of old browsers support, specifically, IE<10.
 FileSaver.js implements the HTML5 W3C `saveAs()` FileSaver interface in browsers that do
 not natively support it. There is a [FileSaver.js demo][1] that demonstrates saving
 various media types.
