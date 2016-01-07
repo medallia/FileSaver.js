@@ -69,12 +69,12 @@ Examples
 
 ```js
 var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-saveTextOrBlob(blob, "hello world.txt");
+saveTextOrBlob(blob, "hello world.txt", true);
 ```
 or
 
 ```js
-saveTextOrBlob("saving this text", "hello world.txt", "UTF-8");
+saveTextOrBlob("saving this text", "hello world.txt", "UTF-8", true);
 ```
 
 
