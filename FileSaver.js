@@ -276,13 +276,13 @@ String.prototype.endsWithAny = function () {
  * @type {*|Function}
  */
 var saveTextOrBlob = saveTextOrBlob
-	|| (function (textContent, fileName, charset) {
+	|| (function (textContent, fileName, charset, no_auto_bom) {
 		fileName = fileName || 'download.txt';
 		charset = charset || 'utf-8';
 		textContent = (textContent || '').replace(/\r?\n/g, "\r\n");
 		if (saveAs && Blob) {
 			var blob = new Blob([textContent], { type: "text/plain;charset=" + charset });
-			saveAs(blob, fileName);
+			saveAs(blob, fileName, no_auto_bom);
 			return true;
 		} else {//IE9-
 			var saveTxtWindow = window.frames.saveTxtWindow;
